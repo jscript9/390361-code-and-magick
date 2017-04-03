@@ -18,7 +18,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 60);
   
   var max = -1;
-  var maxIndex = -1;
   
   for(var i = 0; i < times.length; i++){
     var time = times[i];
@@ -37,15 +36,19 @@ window.renderStatistics = function (ctx, names, times) {
   
   ctx.textBaseline = 'top';
   for(var i = 0; i < times.length; i++){
-    ctx.fillStyle = 'rgba(255, 0, 0, randomInteger(0.1, 0.9))';
-    ctx.fillRect(initialX + indent * i, initialY + (histogramHeight - times[i] * step), barLength, times[i] * step);
+    ctx.fillStyle = 'rgba(9, 9, 237,' + Math.random() +')';
+    ctx.fillRect(initialX + indent * i + barLength * i, initialY + (histogramHeight - times[i] * step), barLength, times[i] * step);
 
-    ctx.fillText(names[i], initialX + indent * i, initialY + histogramHeight + 10);
+    ctx.fillStyle = 'black';
+    ctx.fillText(names[i], initialX + indent * i + barLength * i, initialY + histogramHeight + 10);
 
-    ctx.fillText(times[i].toFixed(), initialX + indent * i, initialY + (histogramHeight - times[i] * step) - 20);
+    ctx.fillStyle = 'black';
+    ctx.fillText(times[i].toFixed(), initialX + indent * i + barLength * i, initialY + (histogramHeight - times[i] * step) - 20);
   }
+  
+  
   
   var orderOfMyName = names.indexOf('Вы');
   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(initialX + indent * orderOfMyName, initialY + (histogramHeight - times[orderOfMyName] * step), barLength, times[orderOfMyName] * step);
+  ctx.fillRect(initialX + indent * orderOfMyName + barLength * orderOfMyName, initialY + (histogramHeight - times[orderOfMyName] * step), barLength, times[orderOfMyName] * step);
 };
